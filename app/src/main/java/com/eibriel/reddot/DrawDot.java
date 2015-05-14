@@ -17,6 +17,7 @@ public class DrawDot extends View {
     float centerX;
     float centerY;
     //float radius;
+    float base;
 
     public DrawDot(Context context) {
         super(context);
@@ -30,6 +31,14 @@ public class DrawDot extends View {
     public void onSizeChanged (int w, int h, int oldw, int oldh) {
         centerX = w/2;
         centerY = h/2;
+
+        if (w < 500) {
+            base = 50;
+        } else if (w < 1000) {
+            base = 100;
+        } else {
+            base = 200;
+        }
     }
 
 
@@ -81,7 +90,6 @@ public class DrawDot extends View {
         float sine3 = timeToSin(milliTime, 8897,    30*amp_sine3*amp_sine7, 10000.0, 0);
         float sine4 = timeToSin(milliTime, 1124568, 30*amp_sine4*amp_sine8, 100000.0, 0);
 
-        float base = 100;
         float radius_ = base + ((sine1 + sine2 + sine3 + sine4)*(base/50));
 
         //Log.d("TimerExample", "Ampsine1 " + amp_sine1);
@@ -103,7 +111,7 @@ public class DrawDot extends View {
     public void onDraw(Canvas canvas) {
         //canvas.drawLine(0, 0, 20, 20, paint);
         //canvas.drawLine(20, 0, 0, 20, paint);
-        Random diceRoller = new Random();
+        //Random diceRoller = new Random();
         //radius = diceRoller.nextInt(100) + 100;
 
         Date time = new Date();
